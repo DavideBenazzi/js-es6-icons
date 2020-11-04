@@ -107,8 +107,9 @@ $(document).ready( function () {
 
   //PRINT ON SCREEN COLOR
   const coloredIcons = colorIcons(icons , color);
-  console.log(coloredIcons);
+  printIcons(coloredIcons , fonticons);
 
+  //FILTER BY TYPE
 
 
 
@@ -124,10 +125,10 @@ $(document).ready( function () {
   //STAMPA BASE
   function printIcons(icons , fonticons) {
     return icons.forEach( (icon) => {
-      const {name, prefix, family} = icon;
+      const {name, prefix, family, color} = icon;
       const html = `
         <div class="icon">
-          <i class="${family} ${prefix}${name}"></i>
+          <i class="${family} ${prefix}${name}" style="color :${color}"></i>
           <div class="type">
             ${name}
           </div>
@@ -140,8 +141,15 @@ $(document).ready( function () {
   function colorIcons(icons , color) {
     //GET TYPES
     const types = getType(icons);
-    console.log('Type: ', types);
     //ASSIGN COLOR
+    const coloredIcons = icons.map( (icon) => {
+      const indexType = types.indexOf(icon.type);
+      return {
+        ...icon,
+        color: color[indexType],
+      };
+    });
+    return coloredIcons;
   };
 
   //GET TYPES
