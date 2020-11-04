@@ -98,11 +98,27 @@ $(document).ready( function () {
         family: 'fas',
       },
   ];
+  //REFERENCIES
+  const fonticons = $('.icons');
+
+  //PRINT ON SCREEN
+  printIcons(icons , fonticons);
 
 
-
-
-
+  //UTILITY
+  function printIcons(icons , fonticons) {
+    return icons.forEach( (icon) => {
+      const {name, prefix, family} = icon;
+      const html = `
+        <div class="icon">
+          <i class="${family} ${prefix}${name}"></i>
+          <div class="type">
+            ${name}
+          </div>
+        </div>`;
+      fonticons.append(html);
+    });
+  };
 
 
 
