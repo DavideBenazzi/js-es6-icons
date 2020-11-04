@@ -98,14 +98,30 @@ $(document).ready( function () {
         family: 'fas',
       },
   ];
+  const color = ['dodgerblue' , 'orange' , 'purple'];
   //REFERENCIES
   const fonticons = $('.icons');
 
-  //PRINT ON SCREEN
-  printIcons(icons , fonticons);
+  //PRINT ON SCREEN VERSIONE BASE
+  // printIcons(icons , fonticons);
+
+  //PRINT ON SCREEN COLOR
+  const coloredIcons = colorIcons(icons , color);
+  console.log(coloredIcons);
+
+
+
+
+
+
+
+
+
+
 
 
   //UTILITY
+  //STAMPA BASE
   function printIcons(icons , fonticons) {
     return icons.forEach( (icon) => {
       const {name, prefix, family} = icon;
@@ -120,8 +136,24 @@ $(document).ready( function () {
     });
   };
 
+  //STAMPA COLORI
+  function colorIcons(icons , color) {
+    //GET TYPES
+    const types = getType(icons);
+    console.log('Type: ', types);
+    //ASSIGN COLOR
+  };
 
-
+  //GET TYPES
+  function getType(icons) {
+    const types = [];
+    icons.forEach( (icon) => {
+      if (! types.includes(icon.type) ) {
+        types.push(icon.type);
+      };
+    });
+    return types;
+  };
 
 
 
