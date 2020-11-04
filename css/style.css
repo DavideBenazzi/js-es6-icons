@@ -4,6 +4,53 @@
   box-sizing: border-box;
 }
 
-body {
+.container {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Rubik', sans-serif;
+}
+
+.fonticons {
+  font-family: 'Acme', sans-serif;
+  font-size: 30px;
+  color: dodgerblue;
+  padding: 20px;
+}
+
+.filter {
+  text-align: center;
   background: dodgerblue;
+  padding: 20px;
+}
+
+.filter label {
+  margin-right: 10px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-content: flex-start;
+  background: #dddddd;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.icon {
+  flex-basis: calc(100% / 6 - 20px);
+  background: #fff;
+  margin: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 20px 0;
+  font-size: 16px;
+}
+
+.icon i {
+  font-size: 30px;
+  margin-bottom: 10px;
 }
