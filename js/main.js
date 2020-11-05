@@ -99,9 +99,11 @@ $(document).ready( function () {
       },
   ];
   const colors = ['dodgerblue' , 'orange' , 'purple'];
+
   //REFERENCIES
   const sectionIcons = $('.icons');
   const filter = $('#type');
+
   //STAMPA LE ICONE BASE
   // printIcons(icons , sectionIcons);
 
@@ -113,13 +115,19 @@ $(document).ready( function () {
   const types = getType(icons);
   genOptions(types , filter);
 
-
-
+  //EVENT CHANGE
+  filter.change( () => {
+    const selected = filter.val();
+    const filteredIcons = filterIcons(coloredIcons , selected);
+    printIcons(filteredIcons , sectionIcons);
+  });
 }); //END DOCUMENT READY
 
 //FUNCTIONS
 //STAMP BASE ICONS
 function printIcons(icons , sectionIcons) {
+  //RESET FOR EVENT CHANGE
+  sectionIcons.html('');
   icons.forEach( (icon) => {
     const {name , prefix , family , color} = icon;
     const html = `
@@ -161,4 +169,15 @@ function genOptions(types , filter) {
   types.forEach( (type) =>{
     filter.append(`<option>${type}</option>`);
   });
+};
+
+//FILTER ICONS
+function filterIcons(coloredIcons , selected) {
+  const filteredIcons = coloredIcons.filter( (icon) => {
+    if (selected === 'all') {
+      return coloredIcons;
+    }
+    return icon.type === selected;
+  });
+  return filteredIcons;
 };
