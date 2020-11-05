@@ -98,73 +98,58 @@ $(document).ready( function () {
         family: 'fas',
       },
   ];
-  const color = ['dodgerblue' , 'orange' , 'purple'];
+  const colors = ['dodgerblue' , 'orange' , 'purple'];
   //REFERENCIES
-  const fonticons = $('.icons');
+  const sectionIcons = $('.icons');
+  const filter = $('#type');
+  //STAMPA LE ICONE BASE
+  // printIcons(icons , sectionIcons);
 
-  //PRINT ON SCREEN VERSIONE BASE
-  // printIcons(icons , fonticons);
+  //STAMP COLORED ICONS
+  const coloredIcons = colorIcons(icons , colors);
+  printIcons(coloredIcons , sectionIcons);
 
-  //PRINT ON SCREEN COLOR
-  const coloredIcons = colorIcons(icons , color);
-  printIcons(coloredIcons , fonticons);
-
-  //FILTER BY TYPE
-
-
-
-
-
-
-
-
-
-
-
-  //UTILITY
-  //STAMPA BASE
-  function printIcons(icons , fonticons) {
-    return icons.forEach( (icon) => {
-      const {name, prefix, family, color} = icon;
-      const html = `
-        <div class="icon">
-          <i class="${family} ${prefix}${name}" style="color :${color}"></i>
-          <div class="type">
-            ${name}
-          </div>
-        </div>`;
-      fonticons.append(html);
-    });
-  };
-
-  //STAMPA COLORI
-  function colorIcons(icons , color) {
-    //GET TYPES
-    const types = getType(icons);
-    //ASSIGN COLOR
-    const coloredIcons = icons.map( (icon) => {
-      const indexType = types.indexOf(icon.type);
-      return {
-        ...icon,
-        color: color[indexType],
-      };
-    });
-    return coloredIcons;
-  };
-
-  //GET TYPES
-  function getType(icons) {
-    const types = [];
-    icons.forEach( (icon) => {
-      if (! types.includes(icon.type) ) {
-        types.push(icon.type);
-      };
-    });
-    return types;
-  };
-
-
+  //FILTER RESULTS
 
 
 
 }); //END DOCUMENT READY
+
+//FUNCTIONS
+//STAMP BASE ICONS
+function printIcons(icons , sectionIcons) {
+  icons.forEach( (icon) => {
+    const {name , prefix , family , color} = icon;
+    const html = `
+    <div class="icon">
+      <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+      <div class="type">${name}</div>
+    </div>
+    `;
+    sectionIcons.append(html);
+  });
+};
+
+//GET TYPE
+function getType(icons) {
+  const types = [];
+  icons.forEach( (icon) => {
+    if (! types.includes(icon.type)) {
+      types.push(icon.type);
+    };
+  });
+  return types;
+};
+
+//COLOR ICONS
+function colorIcons(icons , colors) {
+  const types = getType(icons);
+  const coloredIcons = icons.map( (icon) => {
+    const indexType = types.indexOf(icon.type);
+    return {
+      ...icon,
+      color: colors[indexType],
+    };
+  });
+  return coloredIcons;
+};
