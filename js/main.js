@@ -110,6 +110,8 @@ $(document).ready( function () {
   printIcons(coloredIcons , sectionIcons);
 
   //FILTER RESULTS
+  const types = getType(icons);
+  genOptions(types , filter);
 
 
 
@@ -152,4 +154,11 @@ function colorIcons(icons , colors) {
     };
   });
   return coloredIcons;
+};
+
+//OPTIONS GENERATION
+function genOptions(types , filter) {
+  types.forEach( (type) =>{
+    filter.append(`<option>${type}</option>`);
+  });
 };
